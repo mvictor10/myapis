@@ -1,4 +1,5 @@
-# myapis
+# MyApis
+
 API de ruas Bairros e Ceps do Município de Irecê - BA
 
 - Ruas
@@ -6,5 +7,5 @@ API de ruas Bairros e Ceps do Município de Irecê - BA
 - Bairros
 - Outras Informações
 
-Embreve atualizações para outros contextos
+Embreve atualizações para outros contextos.
   
