@@ -2959,6 +2959,28 @@
     "ddd": "74"
   },
   {
+    "cep": "44860-011",
+    "logradouro": "Avenida Professor Joel Lopes",
+    "complemento": "",
+    "bairro": "Centro",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+    {
+    "cep": "44860-011",
+    "logradouro": "Rua Professor Joel Lopes",
+    "complemento": "",
+    "bairro": "Centro",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
     "cep": "44860-015",
     "logradouro": "Avenida Tertuliano Cambuí",
     "complemento": "",
