@@ -1,67 +1,94 @@
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 2rem;
-    }
+:root{
+  --bg-default:#f5f5f5;
+}
 
-    h1 {
-      text-align: center;
-      color: #333;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-default);
+  padding: 2rem;
+}
 
-    .search-box {
-      max-width: 500px;
-      margin: 0 auto 2rem;
-      display: flex;
-      gap: 0.5rem;
-    }
+h3, h5 {
+  text-align: center;
+  color: #333;
+}
 
-    input[type="text"] {
-      flex: 1;
-      padding: 0.75rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
+.search-box {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
 
-    button {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: none;
-      background-color: #007BFF;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
 
-    button:hover {
-      background-color: #0056b3;
-    }
+input[type="text"] {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 
-    .result {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 1rem;
-    }
+button {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-    .item {
-      border-bottom: 1px solid #eee;
-      padding: 1rem 0;
-    }
+button:hover {
+  background-color: #0056b3;
+}
 
-    .item:last-child {
-      border-bottom: none;
-    }
+.result {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-    .item strong {
-      color: #007BFF;
-    }
+.item {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #eee;
+  padding:12px;
+}
 
-    .not-found {
-      text-align: center;
-      color: red;
-      font-weight: bold;
-    }
+.item:last-child {
+  border-bottom: none;
+}
+
+.item strong {
+  color: #007BFF;
+}
+
+.not-found {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+footer{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-content:center;
+  align-items:center;
+}
+
+
+.footer
+{
+  font-size:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  align-content:center;
+  text-align:center;
+  width:100%;
+}
+

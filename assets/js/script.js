@@ -33,6 +33,7 @@ let dados = [];
             <p><strong>Região:</strong> ${endereco.regiao}</p>
             <p><strong>DDD:</strong> ${endereco.ddd}</p>
           </div>
+          <br>
         `;
       });
     }

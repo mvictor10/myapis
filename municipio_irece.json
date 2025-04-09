@@ -1,7 +1,7 @@
 [
   {
     "cep": "44864-004",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Alto do Moura",
     "localidade": "Irecê",
@@ -309,7 +309,7 @@
   },
   {
     "cep": "44860-462",
-    "logradouro": "1a Travessa José Tibúrcio",
+    "logradouro": "1º Travessa José Tibúrcio",
     "complemento": "",
     "bairro": "Arnóbio Batista",
     "localidade": "Irecê",
@@ -320,7 +320,7 @@
   },
   {
     "cep": "44860-464",
-    "logradouro": "2a Travessa José Tibúrcio",
+    "logradouro": "2º Travessa José Tibúrcio",
     "complemento": "",
     "bairro": "Arnóbio Batista",
     "localidade": "Irecê",
@@ -496,7 +496,7 @@
   },
   {
     "cep": "44864-090",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Asa Norte",
     "localidade": "Irecê",
@@ -925,7 +925,7 @@
   },
   {
     "cep": "44873-755",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Asa Sul",
     "localidade": "Irecê",
@@ -2322,7 +2322,7 @@
   },
   {
     "cep": "44863-095",
-    "logradouro": "1a Travessa Costa e Silva",
+    "logradouro": "1º Travessa Costa e Silva",
     "complemento": "",
     "bairro": "Boa Vista",
     "localidade": "Irecê",
@@ -2333,7 +2333,7 @@
   },
   {
     "cep": "44862-875",
-    "logradouro": "1a Travessa São Domingos",
+    "logradouro": "1º Travessa São Domingos",
     "complemento": "",
     "bairro": "Boa Vista",
     "localidade": "Irecê",
@@ -2344,7 +2344,7 @@
   },
   {
     "cep": "44862-880",
-    "logradouro": "2a Travessa São Domingos",
+    "logradouro": "2º Travessa São Domingos",
     "complemento": "",
     "bairro": "Boa Vista",
     "localidade": "Irecê",
@@ -2378,6 +2378,28 @@
   {
     "cep": "44863-040",
     "logradouro": "Avenida Professor Joel Americano Lopes",
+    "complemento": "",
+    "bairro": "Boa Vista",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
+    "cep": "44863-040",
+    "logradouro": "Avenida Professor Joel Lopes",
+    "complemento": "",
+    "bairro": "Boa Vista",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
+    "cep": "44863-040",
+    "logradouro": "Rua Professor Joel Americano Lopes",
     "complemento": "",
     "bairro": "Boa Vista",
     "localidade": "Irecê",
@@ -2872,7 +2894,7 @@
   },
   {
     "cep": "44860-079",
-    "logradouro": "1a Travessa ACM",
+    "logradouro": "1º Travessa ACM",
     "complemento": "",
     "bairro": "Centro",
     "localidade": "Irecê",
@@ -2894,7 +2916,7 @@
   },
   {
     "cep": "44860-201",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Centro",
     "localidade": "Irecê",
@@ -2961,6 +2983,39 @@
   {
     "cep": "44860-011",
     "logradouro": "Avenida Professor Joel Americano Lopes",
+    "complemento": "",
+    "bairro": "Centro",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
+    "cep": "44860-011",
+    "logradouro": "Rua Professor Joel Americano Lopes",
+    "complemento": "",
+    "bairro": "Centro",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
+    "cep": "44860-011",
+    "logradouro": "Avenida Professor Joel Lopes",
+    "complemento": "",
+    "bairro": "Centro",
+    "localidade": "Irecê",
+    "uf": "BA",
+    "estado": "Bahia",
+    "regiao": "Nordeste",
+    "ddd": "74"
+  },
+  {
+    "cep": "44860-011",
+    "logradouro": "Rua Professor Joel Lopes",
     "complemento": "",
     "bairro": "Centro",
     "localidade": "Irecê",
@@ -5369,7 +5424,7 @@
   },
   {
     "cep": "44860-570",
-    "logradouro": "2a Travessa Teotônio Vilela",
+    "logradouro": "2º Travessa Teotônio Vilela",
     "complemento": "",
     "bairro": "Fundação Bradesco",
     "localidade": "Irecê",
@@ -5842,7 +5897,7 @@
   },
   {
     "cep": "44864-312",
-    "logradouro": "1a Travessa Professora Hilda Vasconcelos",
+    "logradouro": "1º Travessa Professora Hilda Vasconcelos",
     "complemento": "",
     "bairro": "Ginásio de Esportes",
     "localidade": "Irecê",
@@ -5853,7 +5908,7 @@
   },
   {
     "cep": "44864-302",
-    "logradouro": "1a Travessa Teotônio Dourado Filho",
+    "logradouro": "1º Travessa Teotônio Dourado Filho",
     "complemento": "",
     "bairro": "Ginásio de Esportes",
     "localidade": "Irecê",
@@ -6260,7 +6315,7 @@
   },
   {
     "cep": "44873-195",
-    "logradouro": "1a Travessa Roma",
+    "logradouro": "1º Travessa Roma",
     "complemento": "",
     "bairro": "Jardim Europa",
     "localidade": "Irecê",
@@ -6271,7 +6326,7 @@
   },
   {
     "cep": "44873-190",
-    "logradouro": "2a Travessa Roma",
+    "logradouro": "2º Travessa Roma",
     "complemento": "",
     "bairro": "Jardim Europa",
     "localidade": "Irecê",
@@ -7217,7 +7272,7 @@
   },
   {
     "cep": "44867-816",
-    "logradouro": "1a Travessa Joaquim Maria",
+    "logradouro": "1º Travessa Joaquim Maria",
     "complemento": "",
     "bairro": "Lagoa de Tió",
     "localidade": "Irecê",
@@ -7228,7 +7283,7 @@
   },
   {
     "cep": "44867-818",
-    "logradouro": "2a Travessa Joaquim Maria",
+    "logradouro": "2º Travessa Joaquim Maria",
     "complemento": "",
     "bairro": "Lagoa de Tió",
     "localidade": "Irecê",
@@ -7294,7 +7349,7 @@
   },
   {
     "cep": "44867-774",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Lagoa de Tió",
     "localidade": "Irecê",
@@ -8570,7 +8625,7 @@
   },
   {
     "cep": "44860-210",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Morada do Sol",
     "localidade": "Irecê",
@@ -9307,7 +9362,7 @@
   },
   {
     "cep": "44865-275",
-    "logradouro": "1a Travessa da Banha",
+    "logradouro": "1º Travessa da Banha",
     "complemento": "",
     "bairro": "Novo Horizonte",
     "localidade": "Irecê",
@@ -9318,7 +9373,7 @@
   },
   {
     "cep": "44865-340",
-    "logradouro": "1a Travessa Irineu Novaes",
+    "logradouro": "1º Travessa Irineu Novaes",
     "complemento": "",
     "bairro": "Novo Horizonte",
     "localidade": "Irecê",
@@ -9329,7 +9384,7 @@
   },
   {
     "cep": "44865-345",
-    "logradouro": "2a Travessa Irineu Novaes",
+    "logradouro": "2º Travessa Irineu Novaes",
     "complemento": "",
     "bairro": "Novo Horizonte",
     "localidade": "Irecê",
@@ -9340,7 +9395,7 @@
   },
   {
     "cep": "44865-325",
-    "logradouro": "2o Beco Tertuliano Cambuí",
+    "logradouro": "2º Beco Tertuliano Cambuí",
     "complemento": "",
     "bairro": "Novo Horizonte",
     "localidade": "Irecê",
@@ -10715,7 +10770,7 @@
   },
   {
     "cep": "44873-000",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "Recanto das Árvores",
     "localidade": "Irecê",
@@ -11056,7 +11111,7 @@
   },
   {
     "cep": "44865-595",
-    "logradouro": "1a Travessa da Igrejinha",
+    "logradouro": "1º Travessa da Igrejinha",
     "complemento": "",
     "bairro": "São Francisco",
     "localidade": "Irecê",
@@ -11419,7 +11474,7 @@
   },
   {
     "cep": "44867-088",
-    "logradouro": "2a Travessa São Mateus",
+    "logradouro": "2º Travessa São Mateus",
     "complemento": "",
     "bairro": "São José",
     "localidade": "Irecê",
@@ -11430,7 +11485,7 @@
   },
   {
     "cep": "44867-000",
-    "logradouro": "Avenida 1o de Janeiro",
+    "logradouro": "Avenida 1º de Janeiro",
     "complemento": "",
     "bairro": "São José",
     "localidade": "Irecê",
@@ -12156,7 +12211,7 @@
   },
   {
     "cep": "44864-438",
-    "logradouro": "1a Travessa Gracilianao Ramos",
+    "logradouro": "1º Travessa Gracilianao Ramos",
     "complemento": "",
     "bairro": "Silva Pereira",
     "localidade": "Irecê",
@@ -12167,7 +12222,7 @@
   },
   {
     "cep": "44864-424",
-    "logradouro": "1a Travessa Gregório de Matos",
+    "logradouro": "1º Travessa Gregório de Matos",
     "complemento": "",
     "bairro": "Silva Pereira",
     "localidade": "Irecê",
@@ -12178,7 +12233,7 @@
   },
   {
     "cep": "44864-446",
-    "logradouro": "1a Travessa Jorge Luís Borges",
+    "logradouro": "1º Travessa Jorge Luís Borges",
     "complemento": "",
     "bairro": "Silva Pereira",
     "localidade": "Irecê",
@@ -12189,7 +12244,7 @@
   },
   {
     "cep": "44864-432",
-    "logradouro": "1a Travessa Senhor do Bonfim",
+    "logradouro": "1º Travessa Senhor do Bonfim",
     "complemento": "",
     "bairro": "Silva Pereira",
     "localidade": "Irecê",
@@ -12200,7 +12255,7 @@
   },
   {
     "cep": "44864-440",
-    "logradouro": "2a Travessa Graciliano Ramos",
+    "logradouro": "2º Travessa Graciliano Ramos",
     "complemento": "",
     "bairro": "Silva Pereira",
     "localidade": "Irecê",

@@ -7,19 +7,29 @@
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
 </head>
 <body>
-  <h1>Consulta de Endereços - Irecê (BA)</h1>
 
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Digite o CEP ou o logradouro..." />
-    <button onclick="buscar()">Buscar</button>
+  <div class="container">
+    <header>
+      <h3>Consulta Endereços</h3>
+      <h5>Munícipio Irecê/BA</h5>
+    </header>
+
+    <main>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="CEP ou Logradouro..." />
+        <button onclick="buscar()">Buscar</button>
+      </div>
+      <div id="results" class="result"></div>
+    </main>
+
+    <footer>
+        <div class="footer title">
+          <h4>Created by Manoel Vitor</h4>
+          <p> Licensed by Apache 2.0</p>
+      </div>
+    </footer>
+
   </div>
-  <div id="results" class="result"></div>
-  <br><br>
-  <footer>
-    <h4>Applicação Desenvolvida por Manoel Vitor</h4>
-    <p> OpenSource - Livre pra Copia/Uso Pessoal/Commercial/Projetos</p>
-    <p> Não Esqueça de dar os devídos créditos!</p>
-  </footer>
   <script rel="javascript" type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
