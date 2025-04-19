@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta name="author" content="Manoel Vitor">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Gerador de Cifras</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/23035967?v=4" type="image/jpg">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Editor de Cifras/Letras de Música</h1>
+  </header>
+
+  <main>
+    <!-- metadados da música -->
+    <section class="metadata">
+      <div class="field">
+        <label for="title">Título:</label>
+        <input type="text" id="title" placeholder="Nome da música" />
+      </div>
+      <div class="field">
+        <label for="composer">Composição:</label>
+        <input type="text" id="composer" placeholder="Compositor" />
+      </div>
+      <div class="field">
+        <label for="letrista">Letrista:</label>
+        <input type="text" id="letrista" placeholder="Letrista" />
+      </div>
+      <div class="field">
+        <label for="orig-key">Tom original:</label>
+        <select id="orig-key">
+          <option value="C">C</option><option value="C#">C# / Db</option>
+          <option value="D">D</option><option value="D#">D# / Eb</option>
+          <option value="E">E</option><option value="F">F</option>
+          <option value="F#">F# / Gb</option><option value="G">G</option>
+          <option value="G#">G# / Ab</option><option value="A">A</option>
+          <option value="A#">A# / Bb</option><option value="B">B</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- controles de transposição e download -->
+    <section class="controls">
+      <label>Transpor:</label>
+      <button id="down">–</button>
+      <span id="semitones">0</span>
+      <button id="up">+</button>
+      <span class="current-key">Tom atual: <strong id="current-key">C</strong></span>
+      <button id="download">Baixar</button>
+    </section>
+
+    <!-- editor e preview -->
+    <section class="editor">
+      <div class="code-editor">
+        <div id="lineNumbers"></div>
+        <textarea id="input"
+          placeholder="Digite letras e cifras entre colchetes, ex: [C]Let it [G]be..."
+        ></textarea>
+      </div>
+      <div id="preview"></div>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+  <footer>
+    <h4>Apache 2.0</h4>
+  </footer>
+</body>
+</html>
