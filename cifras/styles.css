@@ -1,0 +1,175 @@
+/* reset básico */
+
+:root{
+  --btns-off:#483D8B;
+  --btns-on:#6A5ACD;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  padding: 1rem;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* metadados (título, compositor, letrista, tom) */
+.metadata {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.metadata .field {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+.metadata label {
+  margin-bottom: 0.2rem;
+}
+.metadata input,
+.metadata select {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* controles de transposição e download */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.controls button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  background: var(--btns-off);
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.controls button:hover{
+  background:var(--btns-on);
+}
+.controls #semitones {
+  width: 1.5rem;
+  text-align: center;
+}
+.controls .current-key {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+/* container do editor: números + textarea */
+.code-editor {
+  display: flex;
+  width: 50%;
+  height: 400px;
+  background: white;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  font-family: monospace;
+}
+
+/* coluna de números */
+#lineNumbers {
+  width: 2.5rem;
+  padding: 0.5rem 0.2rem;
+  background: #f0f0f0;
+  color: #666;
+  text-align: right;
+  line-height: 1.4rem;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* textarea */
+#input {
+  flex: 1;
+  border: none;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  resize: none;
+  overflow: auto;
+}
+
+/* preview */
+#preview {
+  width: 50%;
+  height: 400px;
+  overflow-y: auto;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  font-family: monospace;
+}
+
+/* metadados dentro do preview */
+.song-meta {
+  margin-bottom: 1rem;
+}
+.song-meta h2 {
+  margin-bottom: 0.3rem;
+}
+.song-meta p {
+  margin-bottom: 0.1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* renderizar cifras sobre letras usando tabela */
+#preview table {
+  border-collapse: collapse;
+  table-layout: auto;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+#preview td {
+  line-height:1.0rem;
+  padding: 0 1px;
+  white-space: pre;
+  text-align: center;
+  vertical-align: top;
+}
+#preview .cell-chord {
+  font-weight: bold;
+  color: #d6336c;
+  height: 1.2em;
+}
+#preview .cell-lyric {
+  color: #333;
+}
+
+/* labels de seção (versão, refrão, ponte, etc.) */
+#preview .section-label {
+  font-weight: bolder;
+  margin: 1rem 0 0.5rem;
+  text-transform: uppercase;
+  text-align:left;
+  color: #000000;
+}
+
+/* marcador visual de quebra de página */
+#preview .page-break {
+  text-align: center;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #999;
+}
