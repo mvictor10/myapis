@@ -1,7 +1,7 @@
 let dados = [];
 
     async function carregarDados() {
-      const response = await fetch('https://mvictor10.github.io/myapis/municipio_irece.json');
+      const response = await fetch('https://mvictor10.github.io/myapis/data.json');
       dados = await response.json();
     }
 
