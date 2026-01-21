@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert PDF Editor - Resilience Pro</title>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #f4f4f9;
+            --dark: #1e1e2e;
+            --accent: #74c7ec;
+            --success: #a6e3a1;
+            --danger: #f38ba8;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: var(--bg);
+            color: var(--dark);
+        }
+
+        /* Toolbar Superior */
+        #toolbar {
+            background: var(--dark);
+            padding: 10px 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .tool-group { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            border-right: 1px solid #45475a; 
+            padding-right: 15px; 
+        }
+
+        button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            background: var(--accent);
+            color: var(--dark);
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-save { background: var(--success); }
+        .btn-clear { background: var(--danger); color: white; }
+
+        select, input[type="number"] {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #45475a;
+            background: #313244;
+            color: white;
+        }
+
+        /* Workspace */
+        #editor-container {
+            flex: 1;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            scroll-behavior: smooth;
+        }
+
+        #pdf-wrapper {
+            position: relative;
+            background: white;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            line-height: 1;
+        }
+
+        canvas { display: block; }
+
+        /* Camada de Texto Dinâmica */
+        .text-box {
+            position: absolute;
+            background: transparent;
+            border: 1px dashed transparent;
+            padding: 0;
+            margin: 0;
+            cursor: move;
+            outline: none;
+            white-space: nowrap;
+            line-height: 1;
+            min-width: 50px;
+            min-height: 1em;
+        }
+
+        .text-box.active {
+            border: 1px solid var(--accent);
+            background: rgba(116, 199, 236, 0.1);
+            z-index: 1000;
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--dark);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            gap: 15px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div id="toolbar">
+    <div class="tool-group">
+        <input type="file" id="pdf-upload" accept="application/pdf" style="font-size: 12px;">
+    </div>
+    
+    <button onclick="addTextBox()">+ Novo Texto</button>
+
+    <div class="tool-group">
+        <label>Fonte:</label>
+        <select id="font-family">
+            <option value="Helvetica">Helvetica</option>
+            <option value="Courier">Courier</option>
+            <option value="TimesRoman">Times New Roman</option>
+        </select>
+        <input type="number" id="font-size" value="12" min="6" max="150">
+    </div>
+
+    <button onclick="saveToLocalStorage()" style="background: #fab387;">💾 Salvar Rascunho</button>
+    <button class="btn-clear" onclick="clearAll()">Limpar Tudo</button>
+    <button class="btn-save" onclick="exportPDF()">Exportar PDF Final</button>
+</div>
+
+<div id="editor-container">
+    <div id="pdf-wrapper">
+        <canvas id="pdf-canvas"></canvas>
+    </div>
+</div>
+
+<div class="status-bar">
+    <span>Ctrl+C / Ctrl+V: Copiar/Colar</span>
+    <span>Ctrl+Z: Desfazer</span>
+    <span>Del: Excluir</span>
+    <span id="save-status" style="color: var(--success);">Estado: Pronto</span>
+</div>
+
+<script>
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    let pdfBytes = null;
+    let pdfDocInstance = null;
+    let activeBox = null;
+    let clipboard = null;
+    let history = []; // Pilha para Ctrl+Z
+    const VIEW_SCALE = 1.5;
+
+    // --- SISTEMA DE PERSISTÊNCIA (AUTO-SAVE) ---
+
+    function saveToLocalStorage() {
+        const boxes = [];
+        document.querySelectorAll('.text-box').forEach(box => {
+            boxes.push({
+                text: box.innerText,
+                x: box.style.left,
+                y: box.style.top,
+                fontSize: box.style.fontSize,
+                fontFamily: box.style.fontFamily
+            });
+        });
+        localStorage.setItem('pdf_editor_draft', JSON.stringify(boxes));
+        showStatus("Rascunho Salvo!");
+    }
+
+    function loadFromLocalStorage() {
+        const draft = localStorage.getItem('pdf_editor_draft');
+        if (draft) {
+            const boxes = JSON.parse(draft);
+            boxes.forEach(data => {
+                createBoxElement(data.text, data.x, data.y, {
+                    fontSize: data.fontSize,
+                    fontFamily: data.fontFamily
+                });
+            });
+            showStatus("Rascunho recuperado!");
+        }
+    }
+
+    function showStatus(msg) {
+        const el = document.getElementById('save-status');
+        el.innerText = "Estado: " + msg;
+        setTimeout(() => el.innerText = "Estado: Pronto", 3000);
+    }
+
+    // --- ATALHOS DE TECLADO ---
+
+    window.addEventListener('keydown', (e) => {
+        const isTyping = document.activeElement.contentEditable === "true";
+
+        // Ctrl + Z (Undo simples - remove última caixa)
+        if (e.ctrlKey && e.key === 'z') {
+            const boxes = document.querySelectorAll('.text-box');
+            if (boxes.length > 0) boxes[boxes.length - 1].remove();
+        }
+
+        // Ctrl + C / Ctrl + V
+        if (e.ctrlKey && e.key === 'c' && activeBox) {
+            clipboard = {
+                text: activeBox.innerText,
+                fontSize: activeBox.style.fontSize,
+                fontFamily: activeBox.style.fontFamily
+            };
+            showStatus("Copiado!");
+        }
+
+        if (e.ctrlKey && e.key === 'v' && clipboard) {
+            const x = activeBox ? parseInt(activeBox.style.left) + 30 : 100;
+            const y = activeBox ? parseInt(activeBox.style.top) + 30 : 100;
+            createBoxElement(clipboard.text, x + 'px', y + 'px', clipboard);
+        }
+
+        // Delete
+        if ((e.key === "Delete" || e.key === "Backspace") && activeBox && !isTyping) {
+            activeBox.remove();
+            activeBox = null;
+            saveToLocalStorage();
+        }
+    });
+
+    // --- CORE ENGINE ---
+
+    // Sincronização de Estilo
+    ['input', 'change'].forEach(ev => {
+        document.getElementById('font-size').addEventListener(ev, () => {
+            if (activeBox) {
+                activeBox.style.fontSize = (document.getElementById('font-size').value * VIEW_SCALE) + 'px';
+                saveToLocalStorage();
+            }
+        });
+        document.getElementById('font-family').addEventListener(ev, () => {
+            if (activeBox) {
+                activeBox.style.fontFamily = document.getElementById('font-family').value;
+                saveToLocalStorage();
+            }
+        });
+    });
+
+    document.getElementById('pdf-upload').addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        pdfBytes = await file.arrayBuffer();
+        pdfDocInstance = await pdfjsLib.getDocument({data: pdfBytes}).promise;
+        renderPage(1).then(loadFromLocalStorage); // Carrega rascunho após renderizar
+    });
+
+    async function renderPage(num) {
+        const page = await pdfDocInstance.getPage(num);
+        const viewport = page.getViewport({scale: VIEW_SCALE});
+        const canvas = document.getElementById('pdf-canvas');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+        
+        const wrapper = document.getElementById('pdf-wrapper');
+        wrapper.style.width = viewport.width + 'px';
+        wrapper.style.height = viewport.height + 'px';
+    }
+
+    function addTextBox() {
+        createBoxElement("Novo Texto", "100px", "100px");
+    }
+
+    function createBoxElement(text, x, y, style = null) {
+        const wrapper = document.getElementById('pdf-wrapper');
+        const box = document.createElement('div');
+        box.className = 'text-box';
+        box.contentEditable = true;
+        box.innerText = text;
+
+        // Estilização
+        if (style) {
+            box.style.fontSize = style.fontSize;
+            box.style.fontFamily = style.fontFamily;
+        } else {
+            box.style.fontSize = (document.getElementById('font-size').value * VIEW_SCALE) + 'px';
+            box.style.fontFamily = document.getElementById('font-family').value;
+        }
+
+        box.style.left = x;
+        box.style.top = y;
+
+        // Eventos de Mouse
+        box.addEventListener('mousedown', function(e) {
+            if (activeBox) activeBox.classList.remove('active');
+            activeBox = this;
+            activeBox.classList.add('active');
+
+            document.getElementById('font-size').value = Math.round(parseInt(this.style.fontSize) / VIEW_SCALE);
+            document.getElementById('font-family').value = this.style.fontFamily;
+
+            let sX = e.clientX - this.offsetLeft;
+            let sY = e.clientY - this.offsetTop;
+
+            const move = (ev) => {
+                this.style.left = (ev.clientX - sX) + 'px';
+                this.style.top = (ev.clientY - sY) + 'px';
+            };
+            const stop = () => {
+                window.removeEventListener('mousemove', move);
+                window.removeEventListener('mouseup', stop);
+                saveToLocalStorage();
+            };
+            window.addEventListener('mousemove', move);
+            window.addEventListener('mouseup', stop);
+        });
+
+        box.addEventListener('input', saveToLocalStorage);
+
+        wrapper.appendChild(box);
+        return box;
+    }
+
+    function clearAll() {
+        if (confirm("Deseja apagar todos os textos?")) {
+            document.querySelectorAll('.text-box').forEach(b => b.remove());
+            localStorage.removeItem('pdf_editor_draft');
+        }
+    }
+
+    // --- EXPORTAÇÃO FINAL ---
+
+    async function exportPDF() {
+        if (!pdfBytes) return alert("Abra um PDF primeiro!");
+        const { PDFDocument, rgb, StandardFonts } = PDFLib;
+        const loadedPdf = await PDFDocument.load(pdfBytes);
+        const page = loadedPdf.getPages()[0];
+        const { height } = page.getSize();
+
+        const boxes = document.querySelectorAll('.text-box');
+        for (const box of boxes) {
+            const rect = box.getBoundingClientRect();
+            const wrapRect = document.getElementById('pdf-wrapper').getBoundingClientRect();
+            
+            const fontSizePt = parseFloat(box.style.fontSize) / VIEW_SCALE;
+            const pdfX = (rect.left - wrapRect.left) / VIEW_SCALE;
+            const pdfY = (height - ((rect.top - wrapRect.top) / VIEW_SCALE)) - (fontSizePt * 0.82);
+
+            const font = await loadedPdf.embedFont(StandardFonts[box.style.fontFamily]);
+            page.drawText(box.innerText, {
+                x: pdfX, y: pdfY, size: fontSizePt, font: font, color: rgb(0, 0, 0)
+            });
+        }
+
+        const pdfData = await loadedPdf.save();
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(new Blob([pdfData], {type: 'application/pdf'}));
+        link.download = "expert_document.pdf";
+        link.click();
+    }
+</script>
+</body>
+</html>
